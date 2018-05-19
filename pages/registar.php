@@ -76,7 +76,7 @@
         </div>
         <div class="col-md-12 text-center paddingLess">
             <button type="submit" class="btn btn-danger">Registar</button>
-            <a href="login.php" class="btn btn-info">Login</a>
+            <a href="./login.php" class="btn btn-info">Login</a>
         </div>
     </form>
 </div>

@@ -42,10 +42,10 @@ $('#buttonRemoveQuantity').click(function () {
 });
 
 //Remover Pizza do Carrinho
-$('.removeFromCart').click(function(event) {
+/*$('.removeFromCart').click(function(event) {
     $(this).closest('li').remove();
     event.stopPropagation();
-});
+});*/
 
 //Calcular Preço da Pizza
 var anterior;

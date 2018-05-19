@@ -9,12 +9,12 @@
     <div class="col-md-12 text-center">
         <h1><b>Login</b></h1>
     </div>
-    <form action="#">
+    <form action="../php/loginBD.php" method="post">
         <div class="col-md-12">
             <div class="col-md-6 col-md-offset-3">
                 <div class="form-group">
-                    <label for="inputEmail1">Email address:</label>
-                    <input type="email" class="form-control" id="inputEmail1" name="inputEmail1">
+                    <label for="inputEmail">Email:</label>
+                    <input type="email" class="form-control" id="inputEmail" name="inputEmail">
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
         </div>
         <div class="col-md-12 text-center paddingLess">
             <button type="submit" class="btn btn-danger">Login</button>
-            <a href="registar.php" class="btn btn-info">Register</a>
+            <a href="registar.php" class="btn btn-info">Registar</a>
         </div>
     </form>
 </div>

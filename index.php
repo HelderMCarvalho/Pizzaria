@@ -1,4 +1,5 @@
 <?php
+    require_once('./php/bd.php');
     require_once './pages/partials/header1.html';
 ?>
     <title>Home | Pizza's</title>

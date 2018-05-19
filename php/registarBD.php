@@ -1,5 +1,5 @@
 <?php
-    require_once 'db.php';
+    require_once './bd.php';
 
     function testarInput($dados){
         $dados=trim($dados);
@@ -25,5 +25,5 @@
     $stmt = $PDO->prepare($sql);
     $result = $stmt->execute();
 
-    //header("Location: ./index.php");
+    header("Location: ../pages/login.php");
     exit();

@@ -79,6 +79,12 @@ html, body{
 .ingredientPicker{
     margin-bottom: 15px;
 }
+.noHover{
+    pointer-events: none;
+}
+.infoPessoaLogada{
+    margin-left: 180px;
+}
 
 @media (max-width: 767px){
     .ingredientPicker .form-group{
