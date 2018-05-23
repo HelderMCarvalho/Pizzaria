@@ -48,7 +48,7 @@
         </form>
     </div>
     <div class="col-md-6">
-        <iframe width="100%" height="600" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJBSrEIMtTJA0RiC7Dx0AHhA8&key=AIzaSyC63vvrWj3GX4U1kN635vajeHSARrUIvjs" allowfullscreen></iframe>
+        <iframe class="mapa" width="100%" height="600" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJBSrEIMtTJA0RiC7Dx0AHhA8&key=AIzaSyC63vvrWj3GX4U1kN635vajeHSARrUIvjs" allowfullscreen></iframe>
     </div>
 </div>
 <?php

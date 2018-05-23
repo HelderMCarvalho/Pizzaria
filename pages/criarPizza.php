@@ -99,7 +99,7 @@
                 </div>
                 <div class="col-md-6 form-inline">
                     <div class="form-group">
-                        <img src="../img/ham.png" alt="Ham">
+                        <img src="../img/fiambre.png" alt="Ham">
                         <label for="inputHam">Ham:</label>
                         <button type="button" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
                             <div class="handle"></div>

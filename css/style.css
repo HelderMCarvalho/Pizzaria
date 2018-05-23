@@ -82,9 +82,6 @@ html, body{
 .noHover{
     pointer-events: none;
 }
-.infoPessoaLogada{
-    margin-left: 180px;
-}
 
 @media (max-width: 767px){
     .ingredientPicker .form-group{
@@ -105,6 +102,12 @@ html, body{
     }
     .ingredientPicker .form-inline{
         margin-bottom: 15px;
+    }
+}
+
+@media (max-height: 768px) {
+    .mapa {
+        height: 400px;
     }
 }
 
@@ -480,3 +483,46 @@ ul.dropdown-cart li .item-right button{
     display: block;
 }
 /* Fim Dropdown Carrinho */
+
+/* Checkbox bonita */
+input[type="checkbox"]{
+    position: absolute;
+    right: 9000px;
+}
+
+input[type="checkbox"] + .label-text:before{
+    content: "\f096";
+    font-family: "FontAwesome";
+    font-size: 2.49em;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing:antialiased;
+    width: 1em;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+input[type="checkbox"]:checked + .label-text:before{
+    content: "\f14a";
+    color: #2980b9;
+    animation: effect 250ms ease-in;
+}
+
+input[type="checkbox"]:disabled + .label-text{
+    color: #aaa;
+}
+
+input[type="checkbox"]:disabled + .label-text:before{
+    content: "\f0c8";
+    color: #ccc;
+}
+
+.label-text{
+    display: flex;
+    align-items: center;
+}
+/* Fim Checkbox bonita */

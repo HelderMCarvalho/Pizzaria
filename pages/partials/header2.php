@@ -1,10 +1,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/fontAwesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <?php
     session_start();
-
 ?>
 <body class="woodBackground">
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -27,16 +27,19 @@
                     <?php if(!isset($_SESSION['pessoaLogada'])){ ?>
                         <li <?php if($_SERVER['REQUEST_URI']=='/pages/login.php'){echo 'class="active"';} ?>><a href="/pages/login.php">Login</a></li>
                         <li <?php if($_SERVER['REQUEST_URI']=='/pages/registar.php'){echo 'class="active"';} ?>><a href="/pages/registar.php">Registar</a></li>
-                    <?php }else{
-                        if(isset($_SESSION['pessoaLogada'])){ ?>
-                            <li class="infoPessoaLogada"><a class="noHover">Bem vindo <?=$_SESSION['pessoaLogada']['nome'].' '.$_SESSION['pessoaLogada']['apelido'].'!'?></a></li>
-                            <li><a href="/pages/perfil.php">Perfil</a></li>
-                            <li><a href="/php/logout.php">Logout</a></li>
-                        <?php }
-                    }
-                    ?>
+                    <?php } ?>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <?php if(isset($_SESSION['pessoaLogada'])){ ?>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>  Conta  <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Bem-vindo <?=$_SESSION['pessoaLogada']['nome'].' '.$_SESSION['pessoaLogada']['apelido']?></a></li>
+                                <li><a href="/php/perfil.php">Perfil</a></li>
+                                <li><a href="/php/logout.php">Logout</a></li>
+                            </ul>
+                        </li>
+                    <?php }?>
                     <li class="dropdown" id="cart">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-shopping-cart"></span>  Carrinho  <span class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-cart" role="menu">
@@ -54,13 +57,13 @@
                                 $result = $PDO->query($sql);
                                 $itemsCarrinho = $result->fetchAll();
                             }
-                            if(empty($itemsCarrinho)){ ?>
+                            if(empty($itemsCarrinho) && isset($_SESSION['pessoaLogada'])){ ?>
                                 <li>
                                     <span class="item">
                                        Carrinho vazio!
                                     </span>
                                 </li>
-                            <?php }else{
+                            <?php }elseif (!empty($itemsCarrinho)){
                                 $totalCarrinho=0;
                                 foreach ($itemsCarrinho as $itemCarrinho){
                                     $totalCarrinho+=$itemCarrinho['preco']*$itemCarrinho['quantidade'];
@@ -83,7 +86,8 @@
                                 </li>
                             <?php
                                 }
-                            }?>
+                            }
+                            if(isset($_SESSION['pessoaLogada'])){?>
                             <li>
                                 <span class="item">
                                     <span class="item-left">
@@ -95,6 +99,7 @@
                             </li>
                             <li class="divider"></li>
                             <li><a class="text-center" href="">Ver carrinho</a></li>
+                            <?php } ?>
                         </ul>
                     </li>
                 </ul>

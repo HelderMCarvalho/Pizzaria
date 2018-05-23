@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 19-Maio-2018 às 16:08
+-- Generation Time: 23-Maio-2018 às 12:02
 -- Versão do servidor: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `carrinho` (
   `ID` int(11) NOT NULL COMMENT 'ID do carrinho',
   `pessoaID` int(11) NOT NULL COMMENT 'ID da pessoa a quem pertence o carrinho',
   `total` float NOT NULL DEFAULT '0' COMMENT 'Total do carrinho (a pagar)'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Carrinho de compras';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Carrinho de compras';
 
 --
 -- Extraindo dados da tabela `carrinho`
@@ -82,7 +82,15 @@ CREATE TABLE IF NOT EXISTS `ingredientePizza` (
   `nome` varchar(50) NOT NULL COMMENT 'Nome do ingrediente da pizza',
   `imagem` varchar(535) NOT NULL COMMENT 'Caminho da imagem do ingrediente da pizza',
   `preco` float NOT NULL COMMENT 'Preço do ingrediente da pizza'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Ingredientes da pizza';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Ingredientes da pizza';
+
+--
+-- Extraindo dados da tabela `ingredientePizza`
+--
+
+INSERT INTO `ingredientePizza` (`ID`, `nome`, `imagem`, `preco`) VALUES
+(1, 'Fiambre', '/img/fiambre.png', 0.1),
+(2, 'Bacon', '/img/bacon.png', 0.15);
 
 -- --------------------------------------------------------
 
@@ -95,6 +103,14 @@ CREATE TABLE IF NOT EXISTS `ingredientePizzaPorPizza` (
   `ingredientePizzaID` int(11) NOT NULL COMMENT 'ID do ingrediente em questão',
   `quantidade` int(11) NOT NULL COMMENT 'Quantidade do ingrediente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Tabela que guarda os ingredientes de cada pizza e a respetiva quantidade';
+
+--
+-- Extraindo dados da tabela `ingredientePizzaPorPizza`
+--
+
+INSERT INTO `ingredientePizzaPorPizza` (`pizzaID`, `ingredientePizzaID`, `quantidade`) VALUES
+(1, 1, 5),
+(1, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -170,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `pessoa` (
   `tipoPessoa` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Tipo de pessoa (0 - Cliente | 1 - Funcionário)',
   `funcaoFuncionario` varchar(20) DEFAULT NULL COMMENT 'Função de funcionário (caso esta pessoa seja)',
   `password` varchar(535) NOT NULL COMMENT 'Password da pessoa'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Pessoa (tem os atributos em comum de Cliente e Funcionário)';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Pessoa (tem os atributos em comum de Cliente e Funcionário)';
 
 --
 -- Extraindo dados da tabela `pessoa`
@@ -197,14 +213,17 @@ CREATE TABLE IF NOT EXISTS `pizza` (
   `pizzaPredefinida` tinyint(1) NOT NULL COMMENT 'Significa se a pizza é predefinida (criada por funcionário) (0 - Não | 1 - Sim)',
   `pizzaPersonalizada` tinyint(1) NOT NULL COMMENT 'Significa se a pizza é personalizada (criada por um cliente) (0 - Não | 1 - Sim)',
   `pessoaID` int(11) DEFAULT NULL COMMENT 'ID da pessoa que criou a pizza personalizada (NULL se a pizza é predefinida criada por um funcionário)'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Pizzas do sistema';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='Pizzas do sistema';
 
 --
 -- Extraindo dados da tabela `pizza`
 --
 
 INSERT INTO `pizza` (`ID`, `nome`, `imagem`, `tamanhoID`, `crostaID`, `molhoID`, `extraQueijo`, `preco`, `pizzaPredefinida`, `pizzaPersonalizada`, `pessoaID`) VALUES
-(1, 'Pizza Teste', '/img/pizza1.jpg', 1, 1, 1, 1, 10, 1, 0, NULL);
+(1, 'Pizza Teste', '/img/pizza1.jpg', 1, 1, 1, 1, 10, 1, 0, NULL),
+(2, 'Pizza Teste 2', '/img/pizza1.jpg', 2, 1, 1, 1, 20, 1, 0, NULL),
+(3, 'Pizza Teste 3', '/img/pizza1.jpg', 1, 1, 1, 1, 30, 1, 0, NULL),
+(4, 'Pizza Teste 4', '/img/pizza1.jpg', 1, 1, 1, 1, 40, 1, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -318,7 +337,7 @@ ALTER TABLE `tamanhoPizza`
 -- AUTO_INCREMENT for table `carrinho`
 --
 ALTER TABLE `carrinho`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID do carrinho',AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID do carrinho',AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `crostaPizza`
 --
@@ -333,7 +352,7 @@ ALTER TABLE `encomenda`
 -- AUTO_INCREMENT for table `ingredientePizza`
 --
 ALTER TABLE `ingredientePizza`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID do ingrediente da pizza';
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID do ingrediente da pizza',AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `itemCarrinho`
 --
@@ -353,12 +372,12 @@ ALTER TABLE `molhoPizza`
 -- AUTO_INCREMENT for table `pessoa`
 --
 ALTER TABLE `pessoa`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da pessoa',AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da pessoa',AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `pizza`
 --
 ALTER TABLE `pizza`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da pizza',AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da pizza',AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `tamanhoPizza`
 --
