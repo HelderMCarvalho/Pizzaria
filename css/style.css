@@ -82,6 +82,14 @@ html, body{
 .noHover{
     pointer-events: none;
 }
+#labelEQCriarPizza{
+    margin-bottom: 0px;
+}
+.checkboxEQCriarPizza{
+    display: flex;
+    align-items: flex-end;
+    height: 4.215em;
+}
 
 @media (max-width: 767px){
     .ingredientPicker .form-group{
@@ -508,7 +516,7 @@ input[type="checkbox"] + .label-text:before{
 
 input[type="checkbox"]:checked + .label-text:before{
     content: "\f14a";
-    color: #2980b9;
+    color: #d9534f;
     animation: effect 250ms ease-in;
 }
 

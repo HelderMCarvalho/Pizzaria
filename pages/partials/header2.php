@@ -50,10 +50,10 @@
                                 </span>
                             </li>
                             <?php }else{
-                                $sql = 'SELECT ID, total FROM carrinho WHERE pessoaID="'.$_SESSION['pessoaLogada']['ID'].'";';
+                                $sql = 'SELECT ID FROM carrinho WHERE pessoaID="'.$_SESSION['pessoaLogada']['ID'].'";';
                                 $result = $PDO->query($sql);
                                 $carrinho = $result->fetch();
-                                $sql = 'SELECT itemCarrinho.ID, pizza.nome, pizza.imagem, itemCarrinho.quantidade, pizza.preco FROM itemCarrinho INNER JOIN pizza ON pizza.ID=itemCarrinho.pizzaID WHERE itemCarrinho.carrinhoID="'.$carrinho['ID'].'";';
+                                $sql = 'SELECT itemCarrinho.ID, pizza.nome, pizza.imagem, itemCarrinho.quantidade, itemCarrinho.preco FROM itemCarrinho INNER JOIN pizza ON pizza.ID=itemCarrinho.pizzaID WHERE itemCarrinho.carrinhoID="'.$carrinho['ID'].'";';
                                 $result = $PDO->query($sql);
                                 $itemsCarrinho = $result->fetchAll();
                             }
@@ -74,7 +74,7 @@
                                             <img src="<?=$itemCarrinho['imagem']?>" width="50" height="50" alt="<?=$itemCarrinho['nome']?>"/>
                                             <span class="item-info">
                                                 <span><?=$itemCarrinho['nome']?></span>
-                                                <span><?=$itemCarrinho['preco']?>€ x <?=$itemCarrinho['quantidade']?></span>
+                                                <span><?=sprintf('%0.2f', $itemCarrinho['preco'])?>€<b> x <?=$itemCarrinho['quantidade']?></b></span>
                                             </span>
                                         </span>
                                         <span class="item-right">
@@ -92,7 +92,7 @@
                                 <span class="item">
                                     <span class="item-left">
                                         <span class="item-info">
-                                            <span>Total: <?=$totalCarrinho?>€</span>
+                                            <span><b>Total: <?=$totalCarrinho?>€</b></span>
                                         </span>
                                     </span>
                                 </span>

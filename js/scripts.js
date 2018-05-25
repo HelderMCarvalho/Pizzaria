@@ -1,60 +1,52 @@
 //Ingredient Slider
 $('.btn-toggle').click(function () {
-    var quantity = $(this).parent().children('div.form-group').children('input').val();
-    $(this).parent().children('div.form-group').children('input').toggle().val(0).next('.buttonAddIngredient').toggle().next('.buttonRemoveIngredient').toggle();
-    var price = parseFloat($('#price').text()) - (quantity * parseFloat($(this).parent().children('div.form-group').children('input').attr('price')));
-    $('#price').html(price.toFixed(2));
+    var quantidade = $(this).parent().children('div.form-group').children('input').val();
+    $(this).parent().children('div.form-group').children('input').toggle().val(0).next('.buttonAddIngrediente').toggle().next('.buttonRemoveIngrediente').toggle();
+    var preco = parseFloat($('#preco').text()) - (quantidade * parseFloat($(this).parent().children('div.form-group').children('input').attr('preco')));
+    $('#preco').html(preco.toFixed(2));
 });
 $('.btn-toggle').parent().children('div.form-group').children('input').focus(function () {
-    anterior = parseFloat(($(this).val())) * parseFloat($(this).attr('price'));
+    anterior = parseFloat(($(this).val())) * parseFloat($(this).attr('preco'));
 }).keyup(function () {
     if($(this).val()){
-        var price = parseFloat($('#price').text()) + (parseFloat(($(this).val())) * parseFloat($(this).attr('price'))) - anterior;
-        $('#price').html(price.toFixed(2));
-        anterior = parseFloat(($(this).val())) * parseFloat($(this).attr('price'));
+        var preco = parseFloat($('#preco').text()) + (parseFloat(($(this).val())) * parseFloat($(this).attr('preco'))) - anterior;
+        $('#preco').html(preco.toFixed(2));
+        anterior = parseFloat(($(this).val())) * parseFloat($(this).attr('preco'));
     }
 });
-$('.buttonAddIngredient').click(function () {
+$('.buttonAddIngrediente').click(function () {
     if($(this).prevAll('input').val()<10){
         $(this).prevAll('input').val(eval(+$(this).prevAll('input').val()+1));
-        var price = parseFloat($('#price').text()) + parseFloat($(this).prevAll('input').attr('price'));
-        $('#price').html(price.toFixed(2));
+        var preco = parseFloat($('#preco').text()) + parseFloat($(this).prevAll('input').attr('preco'));
+        $('#preco').html(preco.toFixed(2));
     }
 });
-$('.buttonRemoveIngredient').click(function () {
+$('.buttonRemoveIngrediente').click(function () {
     if($(this).prevAll('input').val()>0){
         $(this).prevAll('input').val(eval(+$(this).prevAll('input').val()-1));
-        var price = parseFloat($('#price').text()) - parseFloat($(this).prevAll('input').attr('price'));
-        $('#price').html(price.toFixed(2));
+        var preco = parseFloat($('#preco').text()) - parseFloat($(this).prevAll('input').attr('preco'));
+        $('#preco').html(preco.toFixed(2));
     }
 });
 
 //Quantity of Pizzas
-$('#buttonAddQuantity').click(function () {
-    if($('#inputQuantity').val()<10){
-        $('#inputQuantity').val(eval(+$('#inputQuantity').val()+1));
+$('#buttonAddQuantidade').click(function () {
+    if($('#inputQuantidade').val()<10){
+        $('#inputQuantidade').val(eval(+$('#inputQuantidade').val()+1));
     }
 });
-$('#buttonRemoveQuantity').click(function () {
-    if($('#inputQuantity').val()>1){
-        $('#inputQuantity').val(eval(+$('#inputQuantity').val()-1));
+$('#buttonRemoveQuantidade').click(function () {
+    if($('#inputQuantidade').val()>1){
+        $('#inputQuantidade').val(eval(+$('#inputQuantidade').val()-1));
     }
 });
-
-//Remover Pizza do Carrinho
-/*$('.removeFromCart').click(function(event) {
-    $(this).closest('li').remove();
-    event.stopPropagation();
-});*/
 
 //Calcular Preço da Pizza
 var anterior;
 $('select.form-control').focus(function () {
-    anterior = parseFloat($(this).find('option:selected').attr('price'));
+    anterior = parseFloat($(this).find('option:selected').attr('preco'));
 }).change(function () {
-    var price = parseFloat($('#price').text()) + parseFloat($(this).find('option:selected').attr('price')) - anterior;
-    $('#price').html(price.toFixed(2));
-    anterior = parseFloat($(this).find('option:selected').attr('price'));
+    var preco = parseFloat($('#preco').text()) + parseFloat($(this).find('option:selected').attr('preco')) - anterior;
+    $('#preco').html(preco.toFixed(2));
+    anterior = parseFloat($(this).find('option:selected').attr('preco'));
 });
-
-//Adicionar ao carrinho (O carrinho será guardado na BD logo, o conteudo do Carrinho está na BD)

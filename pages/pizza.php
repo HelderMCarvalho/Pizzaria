@@ -1,7 +1,7 @@
 <?php
     require_once('../php/bd.php');
     require_once './partials/header1.html';
-    $sql='SELECT ID, nome, imagem, tamanhoID, crostaID, molhoID, extraQueijo, preco FROM pizza WHERE ID = '.$_REQUEST['id'].';';
+    $sql='SELECT ID, nome, imagem FROM pizza WHERE ID = '.$_REQUEST['id'].';';
     $result = $PDO->query($sql);
     $pizza = $result->fetch();
 ?>
@@ -12,22 +12,24 @@
 <div class="container-fluid paddingLess marTop">
     <div class="col-md-12 text-center">
         <h1><b><?=$pizza['nome']?></b></h1>
+        <br>
         <div class="col-md-6">
             <img src="<?=$pizza['imagem']?>" class="img-responsive center-block" alt="<?=$pizza['nome']?>">
         </div>
         <div class="col-md-6 text-left">
-            <form action="#">
+            <form action="../php/encomendarPizzaPredefinidaBD.php" method="post">
+                <input type="hidden" id="inputID" name="inputID" value="<?=$_REQUEST['id']?>">
                 <div class="form-group">
                     <label for="inputSize">Tamanho:</label>
                     <?php
                         $sql='SELECT * FROM tamanhoPizza;';
                         $result = $PDO->query($sql);
-                        $tamanhosPizzas = $result->fetchAll();
+                        $tamanhosPizza = $result->fetchAll();
                     ?>
-                    <select class="form-control" name="inputTamanho" title="inputTamanho" id="inputTamanho">
+                    <select class="form-control" name="inputTamanho" title="Tamanho" id="inputTamanho">
                         <?php
-                            foreach($tamanhosPizzas as $tamanhoPizza){ ?>
-                                <option value="<?=$tamanhoPizza['ID']?>" <?php if($tamanhoPizza['ID']==$pizza['tamanhoID']){echo 'selected';} ?>><?=$tamanhoPizza['nome']?></option>
+                            foreach($tamanhosPizza as $tamanhoPizza){ ?>
+                                <option value="<?=$tamanhoPizza['ID']?>" preco="<?=$tamanhoPizza['preco']?>"><?=$tamanhoPizza['nome']?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -38,10 +40,10 @@
                         $result = $PDO->query($sql);
                         $crostasPizza = $result->fetchAll();
                     ?>
-                    <select class="form-control" name="inputCrosta" title="inputCrosta" id="inputCrosta">
+                    <select class="form-control" name="inputCrosta" title="Crosta" id="inputCrosta">
                         <?php
                             foreach($crostasPizza as $crostaPizza){ ?>
-                                <option value="<?=$crostaPizza['ID']?>" <?php if($crostaPizza['ID']==$pizza['crostaID']){echo 'selected';} ?>><?=$crostaPizza['nome']?></option>
+                                <option value="<?=$crostaPizza['ID']?>" preco="<?=$crostaPizza['preco']?>"><?=$crostaPizza['nome']?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -52,10 +54,10 @@
                     $result = $PDO->query($sql);
                     $molhosPizza = $result->fetchAll();
                     ?>
-                    <select class="form-control" name="inputMolho" title="inputMolho" id="inputMolho">
+                    <select class="form-control" name="inputMolho" title="Molho" id="inputMolho">
                         <?php
                         foreach($molhosPizza as $molhoPizza){ ?>
-                            <option value="<?=$molhoPizza['ID']?>" <?php if($molhoPizza['ID']==$pizza['molhoID']){echo 'selected';} ?>><?=$molhoPizza['nome']?></option>
+                            <option value="<?=$molhoPizza['ID']?>" preco="<?=$molhoPizza['preco']?>"><?=$molhoPizza['nome']?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -64,22 +66,35 @@
                         <input type="checkbox" name="inputExtraQueijo" id="inputExtraQueijo"><span class="label-text">Extra queijo</span>
                     </label>
                 </div>
+                <div class="form-group form-inline">
+                    <label for="inputQuantidade">Quantidade de Pizzas:</label>
+                    <input type="number" class="form-control" value="1" name="inputQuantidade" id="inputQuantidade" min="1" max="10">
+                    <button type="button" class="btn btn-default" id="buttonAddQuantidade"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                    <button type="button" class="btn btn-default" id="buttonRemoveQuantidade"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+                </div>
                 <button type="submit" class="btn btn-danger">Encomendar</button>
             </form>
-            <h2 class="black">Preço: <span><?=$pizza['preco']?>€</span></h2>
-        </div>
-        <div class="col-md-12">
             <?php
-                $sql='SELECT ingredientePizza.nome, ingredientePizza.imagem, ingredientePizzaPorPizza.quantidade FROM ingredientePizza INNER JOIN ingredientePizzaPorPizza ON ingredientePizza.ID = ingredientePizzaPorPizza.ingredientePizzaID WHERE ingredientePizzaPorPizza.pizzaID = '.$_REQUEST['id'].';';
+                $sql='SELECT ingredientePizza.nome, ingredientePizza.imagem, ingredientePizza.preco, ingredientePizzaPorPizza.quantidade, ROUND(ingredientePizza.preco*ingredientePizzaPorPizza.quantidade, 2) TotalPorIngrediente FROM ingredientePizza INNER JOIN ingredientePizzaPorPizza ON ingredientePizza.ID = ingredientePizzaPorPizza.ingredientePizzaID WHERE ingredientePizzaPorPizza.pizzaID = '.$_REQUEST['id'].';';
                 $result = $PDO->query($sql);
                 $ingredientesPizza = $result->fetchAll();
-                var_dump($ingredientesPizza);
+                $precoBase=(reset($tamanhosPizza)['preco'])+(reset($crostasPizza)['preco'])+(reset($molhosPizza)['preco']);
+                foreach($ingredientesPizza as $ingredientePizza){
+                    $precoBase+=$ingredientePizza['TotalPorIngrediente'];
+                }
             ?>
+            <h2 class="black">Preço: <span id="preco"><?=sprintf('%0.2f', $precoBase)?></span>€</h2>
+        </div>
+        <div class="col-md-12">
+            <br>
             <h1>Ingredientes</h1>
-            <div class="col-md-3">Ingrediente 1</div>
-            <div class="col-md-3">Ingrediente 2</div>
-            <div class="col-md-3">Ingrediente 3</div>
-            <div class="col-md-3">Ingrediente 4</div>
+            <br>
+            <?php
+                foreach($ingredientesPizza as $ingredientePizza){ ?>
+                    <div class="col-md-3">
+                        <img src="<?=$ingredientePizza['imagem']?>" alt="<?=$ingredientePizza['nome']?>">
+                        <?=$ingredientePizza['nome'].' <b>x '.$ingredientePizza['quantidade'].'</b>'?></div>
+            <?php } ?>
         </div>
     </div>
 </div>
