@@ -23,6 +23,7 @@
                     <li <?php if(($_SERVER['REQUEST_URI']=='/index.php') || ($_SERVER['REQUEST_URI']=='/')){echo 'class="active"';} ?>><a href="/index.php">Home<span class="sr-only">(current)</span></a></li>
                     <li <?php if($_SERVER['REQUEST_URI']=='/pages/menus.php'){echo 'class="active"';} ?>><a href="/pages/menus.php">Menus</a></li>
                     <li <?php if($_SERVER['REQUEST_URI']=='/pages/criarPizza.php'){echo 'class="active"';} ?>><a href="/pages/criarPizza.php">Criar pizza</a></li>
+                    <li <?php if($_SERVER['REQUEST_URI']=='/pages/minhasPizzas.php'){echo 'class="active"';} ?>><a href="/pages/minhasPizzas.php">Minhas pizza's</a></li>
                     <li <?php if($_SERVER['REQUEST_URI']=='/pages/sobre.php'){echo 'class="active"';} ?>><a href="/pages/sobre.php">Sobre</a></li>
                     <?php if(!isset($_SESSION['pessoaLogada'])){ ?>
                         <li <?php if($_SERVER['REQUEST_URI']=='/pages/login.php'){echo 'class="active"';} ?>><a href="/pages/login.php">Login</a></li>
@@ -35,7 +36,7 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>  Conta  <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Bem-vindo <?=$_SESSION['pessoaLogada']['nome'].' '.$_SESSION['pessoaLogada']['apelido']?></a></li>
-                                <li><a href="/php/perfil.php">Perfil</a></li>
+                                <li <?php if($_SERVER['REQUEST_URI']=='/pages/perfil.php'){echo 'class="active"';} ?>><a href="/pages/perfil.php">Perfil</a></li>
                                 <li><a href="/php/logout.php">Logout</a></li>
                             </ul>
                         </li>

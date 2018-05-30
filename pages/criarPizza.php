@@ -11,7 +11,7 @@
         <h1><b>Cria a tua própria Pizza</b></h1>
     </div>
     <div class="col-md-12 text-left">
-        <form action="#">
+        <form action="../php/criarEncomendarPizzaPersonalizada.php" method="post">
             <div class="col-md-12">
                 <div class="form-group col-md-6">
                     <?php
@@ -50,7 +50,7 @@
                         $result = $PDO->query($sql);
                         $molhosPizza = $result->fetchAll();
                     ?>
-                    <select class="form-control" name="inputSauce" title="Sauce" id="inputSauce">
+                    <select class="form-control" name="inputMolho" title="Molho" id="inputMolho">
                         <?php
                             foreach($molhosPizza as $molhoPizza){ ?>
                                 <option value="<?=$molhoPizza['ID']?>" preco="<?=$molhoPizza['preco']?>"><?=$molhoPizza['nome']?></option>
@@ -76,12 +76,12 @@
                     <div class="col-md-6 form-inline">
                         <div class="form-group">
                             <img src="<?=$ingredientePizza['imagem']?>" alt="<?=$ingredientePizza['nome']?>">
-                            <label for="input<?=$ingredientePizza['nome']?>"><?=$ingredientePizza['nome']?></label>
+                            <label for="input<?=str_replace(' ', '', $ingredientePizza['nome'])?>"><?=$ingredientePizza['nome']?></label>
                             <button type="button" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
                                 <div class="handle"></div>
                             </button>
                             <div class="form-group">
-                                <input type="number" class="form-control" value="0" name="input<?=$ingredientePizza['nome']?>" id="input<?=$ingredientePizza['nome']?>" min="0" max="10" style="display: none" preco="<?=$ingredientePizza['preco']?>">
+                                <input type="number" class="form-control" value="0" name="input<?=str_replace(' ', '', $ingredientePizza['nome'])?>" id="input<?=str_replace(' ', '', $ingredientePizza['nome'])?>" min="0" max="10" style="display: none" preco="<?=$ingredientePizza['preco']?>">
                                 <button type="button" class="btn btn-default buttonAddIngrediente" style="display: none"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                                 <button type="button" class="btn btn-default buttonRemoveIngrediente" style="display: none"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
                             </div>

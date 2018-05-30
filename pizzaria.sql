@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 25-Maio-2018 às 12:00
+-- Generation Time: 30-Maio-2018 às 14:22
 -- Versão do servidor: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -126,7 +126,17 @@ INSERT INTO `ingredientePizzaPorPizza` (`pizzaID`, `ingredientePizzaID`, `quanti
 (3, 4, 10),
 (3, 8, 2),
 (3, 9, 2),
-(3, 10, 10);
+(3, 10, 10),
+(13, 1, 10),
+(13, 2, 10),
+(13, 3, 10),
+(13, 4, 10),
+(13, 5, 10),
+(13, 6, 10),
+(13, 7, 10),
+(13, 8, 10),
+(13, 9, 10),
+(13, 10, 10);
 
 -- --------------------------------------------------------
 
@@ -144,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `itemCarrinho` (
   `extraQueijo` tinyint(4) NOT NULL COMMENT 'Significa se a pizza tem extra queijo ou não (0 - Não | 1 - Sim)',
   `preco` float NOT NULL COMMENT 'Preço da pizza',
   `carrinhoID` int(11) NOT NULL COMMENT 'ID do carrinho ao qual esta linha do carrinho pertence'
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='Tabela que guarda as pizzas dos carrinhos';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='Tabela que guarda as pizzas dos carrinhos';
 
 --
 -- Extraindo dados da tabela `itemCarrinho`
@@ -156,7 +166,8 @@ INSERT INTO `itemCarrinho` (`ID`, `pizzaID`, `quantidade`, `tamanhoID`, `crostaI
 (6, 3, 1, 1, 1, 1, 0, 5.25, 1),
 (7, 1, 2, 3, 2, 1, 0, 6.2, 1),
 (8, 2, 3, 4, 2, 2, 0, 9.9, 1),
-(9, 3, 4, 5, 2, 3, 0, 12.25, 1);
+(9, 3, 4, 5, 2, 3, 0, 12.25, 1),
+(10, 13, 5, 5, 2, 3, 1, 20, 1);
 
 -- --------------------------------------------------------
 
@@ -218,7 +229,7 @@ CREATE TABLE IF NOT EXISTS `pessoa` (
 --
 
 INSERT INTO `pessoa` (`ID`, `nome`, `apelido`, `email`, `dataNascimento`, `morada`, `codigoPostal`, `freguesia`, `distrito`, `tipoPessoa`, `funcaoFuncionario`, `password`) VALUES
-(1, 'teste', 'um', 'teste@teste.pt', '2018-05-18', 'Rua da Lama, 151', '4755-437', 'Remelhe', 'Braga', 0, NULL, '$2y$10$lOxam2ySywIQAsIo.QO/X.IYLhpQDLjNDrkpUUP.5VPGhhm.wZou6');
+(1, 'Hélder', 'Carvalho', 'teste@teste.pt', '1999-05-25', 'Rua da Lama, 151', '4755-437', 'Remelhe', 'Braga', 0, NULL, '$2y$10$lOxam2ySywIQAsIo.QO/X.IYLhpQDLjNDrkpUUP.5VPGhhm.wZou6');
 
 -- --------------------------------------------------------
 
@@ -233,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `pizza` (
   `pizzaPredefinida` tinyint(1) NOT NULL COMMENT 'Significa se a pizza é predefinida (criada por funcionário) (0 - Não | 1 - Sim)',
   `pizzaPersonalizada` tinyint(1) NOT NULL COMMENT 'Significa se a pizza é personalizada (criada por um cliente) (0 - Não | 1 - Sim)',
   `pessoaID` int(11) DEFAULT NULL COMMENT 'ID da pessoa que criou a pizza personalizada (NULL se a pizza é predefinida criada por um funcionário)'
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='Pizzas do sistema';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='Pizzas do sistema';
 
 --
 -- Extraindo dados da tabela `pizza`
@@ -242,7 +253,8 @@ CREATE TABLE IF NOT EXISTS `pizza` (
 INSERT INTO `pizza` (`ID`, `nome`, `imagem`, `pizzaPredefinida`, `pizzaPersonalizada`, `pessoaID`) VALUES
 (1, 'Pizza Pepperoni', '/img/pizzaPepperoni.png', 1, 0, NULL),
 (2, 'Pizza Meat Eater', '/img/pizzaMeatEater.png', 1, 0, NULL),
-(3, 'Pizza Supreme', '/img/pizzaSupreme.png', 1, 0, NULL);
+(3, 'Pizza Supreme', '/img/pizzaSupreme.png', 1, 0, NULL),
+(13, 'Pizza #13', '/img/pizza2.jpg', 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -376,7 +388,7 @@ ALTER TABLE `ingredientePizza`
 -- AUTO_INCREMENT for table `itemCarrinho`
 --
 ALTER TABLE `itemCarrinho`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',AUTO_INCREMENT=10;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `itemEncomenda`
 --
@@ -396,7 +408,7 @@ ALTER TABLE `pessoa`
 -- AUTO_INCREMENT for table `pizza`
 --
 ALTER TABLE `pizza`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da pizza',AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da pizza',AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `tamanhoPizza`
 --
@@ -423,7 +435,7 @@ ALTER TABLE `encomenda`
 --
 ALTER TABLE `ingredientePizzaPorPizza`
   ADD CONSTRAINT `fk_ingredientePizza_ingredientePizzaPorPizza` FOREIGN KEY (`ingredientePizzaID`) REFERENCES `ingredientePizza` (`ID`),
-  ADD CONSTRAINT `fk_pizza_ingredientePizzaPorPizza` FOREIGN KEY (`pizzaID`) REFERENCES `pizza` (`ID`);
+  ADD CONSTRAINT `fk_pizza_ingredientePizzaPorPizza` FOREIGN KEY (`pizzaID`) REFERENCES `pizza` (`ID`) ON DELETE CASCADE;
 
 --
 -- Limitadores para a tabela `itemCarrinho`

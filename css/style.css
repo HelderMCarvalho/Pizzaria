@@ -28,6 +28,9 @@
     color: black;
     background-color: #f3f3f3;
 }
+.dropdown-menu>.active>a{
+    background-color: #9d9d9d;
+}
 html, body{
     height:100%;
 }
@@ -90,6 +93,14 @@ html, body{
     align-items: flex-end;
     height: 4.215em;
 }
+.tabelaMinhasPizzas>tbody>tr>td{
+    width: 1px;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+#tdIngredientes{
+     vertical-align: middle;
+ }
 
 @media (max-width: 767px){
     .ingredientPicker .form-group{
