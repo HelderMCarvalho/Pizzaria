@@ -2,7 +2,7 @@
     require_once('../php/bd.php');
     require_once './partials/header1.html';
 ?>
-    <title>Menus | Pizza's</title>
+    <title>Minhas Pizza'a | Pizza's</title>
 <?php
     require_once './partials/header2.php';
     $sql='SELECT ID, nome, imagem FROM pizza WHERE pessoaID='.$_SESSION['pessoaLogada']['ID'].';';
@@ -12,7 +12,7 @@
 <div class="container marTop">
     <div class="col-md-12">
         <h1 class="text-center"><b>Minhas pizza's</b></h1>
-        <table class="table table-bordered table-hover tabelaMinhasPizzas">
+        <table class="table table-bordered table-hover tabelaMinhasPizzas" style="background-color: white;">
             <thead>
             <tr>
                 <th class="text-center">Nome</th>
@@ -29,7 +29,7 @@
                 ?>
                 <tr>
                     <td><?=$pizza['nome']?></td>
-                    <td id="tdIngredientes">
+                    <td>
                         <?php
                             foreach($ingredientesPizza as $ingredientePizza){ ?>
                                 <img src="<?=$ingredientePizza['imagem']?>" alt="<?=$ingredientePizza['nome']?>"><b>x<?=$ingredientePizza['quantidade'].'</b>'?>

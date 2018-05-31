@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 30-Maio-2018 às 14:22
+-- Generation Time: 31-Maio-2018 às 15:50
 -- Versão do servidor: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -66,9 +66,8 @@ INSERT INTO `crostaPizza` (`ID`, `nome`, `preco`) VALUES
 
 CREATE TABLE IF NOT EXISTS `encomenda` (
   `ID` int(11) NOT NULL COMMENT 'ID da encomenda',
-  `pessoaID` int(11) NOT NULL COMMENT 'ID da pessoa ao qual pertence a encomenda',
-  `total` float NOT NULL COMMENT 'Total da encomenda (pago)'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Representa uma encomenda (um carrinho que já foi pago)';
+  `pessoaID` int(11) NOT NULL COMMENT 'ID da pessoa ao qual pertence a encomenda'
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='Representa uma encomenda (um carrinho que já foi pago)';
 
 -- --------------------------------------------------------
 
@@ -151,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `itemCarrinho` (
   `tamanhoID` int(11) NOT NULL COMMENT 'Tamanho da pizza',
   `crostaID` int(11) NOT NULL COMMENT 'Crosta da pizza',
   `molhoID` int(11) NOT NULL COMMENT 'Molho da pizza',
-  `extraQueijo` tinyint(4) NOT NULL COMMENT 'Significa se a pizza tem extra queijo ou não (0 - Não | 1 - Sim)',
+  `extraQueijo` tinyint(1) NOT NULL COMMENT 'Significa se a pizza tem extra queijo ou não (0 - Não | 1 - Sim)',
   `preco` float NOT NULL COMMENT 'Preço da pizza',
   `carrinhoID` int(11) NOT NULL COMMENT 'ID do carrinho ao qual esta linha do carrinho pertence'
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='Tabela que guarda as pizzas dos carrinhos';
@@ -161,7 +160,6 @@ CREATE TABLE IF NOT EXISTS `itemCarrinho` (
 --
 
 INSERT INTO `itemCarrinho` (`ID`, `pizzaID`, `quantidade`, `tamanhoID`, `crostaID`, `molhoID`, `extraQueijo`, `preco`, `carrinhoID`) VALUES
-(4, 1, 1, 1, 1, 1, 0, 3.2, 1),
 (5, 2, 1, 1, 1, 1, 0, 4.9, 1),
 (6, 3, 1, 1, 1, 1, 0, 5.25, 1),
 (7, 1, 2, 3, 2, 1, 0, 6.2, 1),
@@ -179,8 +177,13 @@ CREATE TABLE IF NOT EXISTS `itemEncomenda` (
   `ID` int(11) NOT NULL COMMENT 'ID do item da encomenda',
   `pizzaID` int(11) NOT NULL COMMENT 'ID da pizza nesta linha da encomenda',
   `quantidade` int(11) NOT NULL COMMENT 'Quantidade da pizza desta linha da encomenda',
+  `tamanhoID` int(11) NOT NULL COMMENT 'Tamanho da pizza',
+  `crostaID` int(11) NOT NULL COMMENT 'Crosta da pizza',
+  `molhoID` int(11) NOT NULL COMMENT 'Molho da pizza',
+  `extraQueijo` tinyint(1) NOT NULL COMMENT 'Significa se a pizza tem extra queijo ou não (0 - Não | 1 - Sim)',
+  `preco` float NOT NULL COMMENT 'Preço da pizza',
   `encomendaID` int(11) NOT NULL COMMENT 'ID da encomenda à qual esta linha pertence'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Tabela que guarda as pizzas das encomendas';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='Tabela que guarda as pizzas das encomendas';
 
 -- --------------------------------------------------------
 
@@ -332,8 +335,11 @@ ALTER TABLE `itemCarrinho`
 --
 ALTER TABLE `itemEncomenda`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `fk_encomenda_itemEncomenda` (`encomendaID`),
-  ADD KEY `fk_itemEncomenda_pizza` (`pizzaID`);
+  ADD KEY `fk_itemEncomenda_pizza` (`pizzaID`),
+  ADD KEY `tamanhoID` (`tamanhoID`),
+  ADD KEY `crostaID` (`crostaID`),
+  ADD KEY `molhoID` (`molhoID`),
+  ADD KEY `fk_encomenda_itemEncomenda` (`encomendaID`);
 
 --
 -- Indexes for table `molhoPizza`
@@ -378,7 +384,7 @@ ALTER TABLE `crostaPizza`
 -- AUTO_INCREMENT for table `encomenda`
 --
 ALTER TABLE `encomenda`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da encomenda';
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da encomenda',AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `ingredientePizza`
 --
@@ -393,7 +399,7 @@ ALTER TABLE `itemCarrinho`
 -- AUTO_INCREMENT for table `itemEncomenda`
 --
 ALTER TABLE `itemEncomenda`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID do item da encomenda';
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID do item da encomenda',AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `molhoPizza`
 --
@@ -451,8 +457,11 @@ ALTER TABLE `itemCarrinho`
 -- Limitadores para a tabela `itemEncomenda`
 --
 ALTER TABLE `itemEncomenda`
-  ADD CONSTRAINT `fk_encomenda_itemEncomenda` FOREIGN KEY (`encomendaID`) REFERENCES `encomenda` (`ID`),
-  ADD CONSTRAINT `fk_itemEncomenda_pizza` FOREIGN KEY (`pizzaID`) REFERENCES `pizza` (`ID`);
+  ADD CONSTRAINT `fk_crostaPizza_itemEncomenda` FOREIGN KEY (`crostaID`) REFERENCES `crostaPizza` (`ID`),
+  ADD CONSTRAINT `fk_encomenda_itemEncomenda` FOREIGN KEY (`encomendaID`) REFERENCES `encomenda` (`ID`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_itemEncomenda_pizza` FOREIGN KEY (`pizzaID`) REFERENCES `pizza` (`ID`),
+  ADD CONSTRAINT `fk_molhoPizza_itemEncomenda` FOREIGN KEY (`molhoID`) REFERENCES `molhoPizza` (`ID`),
+  ADD CONSTRAINT `fk_tamanhoPizza_itemEncomenda` FOREIGN KEY (`tamanhoID`) REFERENCES `tamanhoPizza` (`ID`);
 
 --
 -- Limitadores para a tabela `pizza`

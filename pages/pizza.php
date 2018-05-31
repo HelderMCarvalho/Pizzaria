@@ -17,7 +17,7 @@
             <img src="<?=$pizza['imagem']?>" class="img-responsive center-block" alt="<?=$pizza['nome']?>">
         </div>
         <div class="col-md-6 text-left">
-            <form action="../php/encomendarPizzaPredefinidaBD.php" method="post">
+            <form action="../php/adicionarCarrinhoPizzaPredefinidaBD.php" method="post">
                 <input type="hidden" id="inputID" name="inputID" value="<?=$_REQUEST['id']?>">
                 <div class="form-group">
                     <label for="inputSize">Tamanho:</label>

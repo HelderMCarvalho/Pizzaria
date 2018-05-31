@@ -11,7 +11,7 @@
         <h1><b>Cria a tua própria Pizza</b></h1>
     </div>
     <div class="col-md-12 text-left">
-        <form action="../php/criarEncomendarPizzaPersonalizada.php" method="post">
+        <form action="../php/criarAdicionarCarrinhoPizzaPersonalizada.php" method="post">
             <div class="col-md-12">
                 <div class="form-group col-md-6">
                     <?php

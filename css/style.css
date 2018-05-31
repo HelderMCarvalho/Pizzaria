@@ -94,13 +94,8 @@ html, body{
     height: 4.215em;
 }
 .tabelaMinhasPizzas>tbody>tr>td{
-    width: 1px;
-    white-space: nowrap;
     vertical-align: middle;
 }
-#tdIngredientes{
-     vertical-align: middle;
- }
 
 @media (max-width: 767px){
     .ingredientPicker .form-group{

@@ -54,7 +54,7 @@
                                 $sql = 'SELECT ID FROM carrinho WHERE pessoaID="'.$_SESSION['pessoaLogada']['ID'].'";';
                                 $result = $PDO->query($sql);
                                 $carrinho = $result->fetch();
-                                $sql = 'SELECT itemCarrinho.ID, pizza.nome, pizza.imagem, itemCarrinho.quantidade, itemCarrinho.preco FROM itemCarrinho INNER JOIN pizza ON pizza.ID=itemCarrinho.pizzaID WHERE itemCarrinho.carrinhoID="'.$carrinho['ID'].'";';
+                                $sql = 'SELECT itemCarrinho.ID, pizza.nome, pizza.imagem, itemCarrinho.quantidade, itemCarrinho.preco, ROUND(itemCarrinho.quantidade*itemCarrinho.preco, 2) TotalPorPizza FROM itemCarrinho INNER JOIN pizza ON pizza.ID=itemCarrinho.pizzaID WHERE itemCarrinho.carrinhoID="'.$carrinho['ID'].'";';
                                 $result = $PDO->query($sql);
                                 $itemsCarrinho = $result->fetchAll();
                             }
@@ -64,15 +64,15 @@
                                        Carrinho vazio!
                                     </span>
                                 </li>
-                            <?php }elseif (!empty($itemsCarrinho)){
+                            <?php }else{
                                 $totalCarrinho=0;
                                 foreach ($itemsCarrinho as $itemCarrinho){
-                                    $totalCarrinho+=$itemCarrinho['preco']*$itemCarrinho['quantidade'];
+                                    $totalCarrinho+=$itemCarrinho['TotalPorPizza'];
                             ?>
                                 <li>
                                     <span class="item">
                                         <span class="item-left">
-                                            <img src="<?=$itemCarrinho['imagem']?>" width="50" height="50" alt="<?=$itemCarrinho['nome']?>"/>
+                                            <img src="<?=$itemCarrinho['imagem']?>" width="84" height="auto" alt="<?=$itemCarrinho['nome']?>"/>
                                             <span class="item-info">
                                                 <span><?=$itemCarrinho['nome']?></span>
                                                 <span><?=sprintf('%0.2f', $itemCarrinho['preco'])?>€<b> x <?=$itemCarrinho['quantidade']?></b></span>
@@ -80,7 +80,7 @@
                                         </span>
                                         <span class="item-right">
                                             <a href="/php/removerItemCarrinho.php?id=<?=$itemCarrinho['ID']?>">
-                                                <button class="btn btn-xs btn-danger pull-right removeFromCart"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                                <button class="btn btn-xs btn-danger pull-right"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                                             </a>
                                         </span>
                                     </span>
@@ -99,7 +99,7 @@
                                 </span>
                             </li>
                             <li class="divider"></li>
-                            <li><a class="text-center" href="">Ver carrinho</a></li>
+                            <li><a class="text-center" href="/pages/carrinho.php">Ver carrinho</a></li>
                             <?php } ?>
                         </ul>
                     </li>

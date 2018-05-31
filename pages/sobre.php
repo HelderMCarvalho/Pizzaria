@@ -8,7 +8,7 @@
 ?>
 <div class="container paddingLess marTop">
     <div class="col-md-12 text-center">
-        <h1><b>About Us</b></h1>
+        <h1><b>Sobre nós</b></h1>
     </div>
     <div class="col-md-6 paddingLess">
         <form action="#">
