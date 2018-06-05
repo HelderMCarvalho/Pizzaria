@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 31-Maio-2018 às 15:50
+-- Generation Time: 05-Jun-2018 às 14:53
 -- Versão do servidor: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -66,8 +66,9 @@ INSERT INTO `crostaPizza` (`ID`, `nome`, `preco`) VALUES
 
 CREATE TABLE IF NOT EXISTS `encomenda` (
   `ID` int(11) NOT NULL COMMENT 'ID da encomenda',
-  `pessoaID` int(11) NOT NULL COMMENT 'ID da pessoa ao qual pertence a encomenda'
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='Representa uma encomenda (um carrinho que já foi pago)';
+  `pessoaID` int(11) NOT NULL COMMENT 'ID da pessoa ao qual pertence a encomenda',
+  `tipoEntrega` tinyint(1) NOT NULL COMMENT 'Repredenta o tipo de entrega que a pessoa escolheu (0 - Loja | 1 - Casa)'
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Representa uma encomenda (um carrinho que já foi pago)';
 
 -- --------------------------------------------------------
 
@@ -183,7 +184,7 @@ CREATE TABLE IF NOT EXISTS `itemEncomenda` (
   `extraQueijo` tinyint(1) NOT NULL COMMENT 'Significa se a pizza tem extra queijo ou não (0 - Não | 1 - Sim)',
   `preco` float NOT NULL COMMENT 'Preço da pizza',
   `encomendaID` int(11) NOT NULL COMMENT 'ID da encomenda à qual esta linha pertence'
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='Tabela que guarda as pizzas das encomendas';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='Tabela que guarda as pizzas das encomendas';
 
 -- --------------------------------------------------------
 
@@ -384,7 +385,7 @@ ALTER TABLE `crostaPizza`
 -- AUTO_INCREMENT for table `encomenda`
 --
 ALTER TABLE `encomenda`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da encomenda',AUTO_INCREMENT=16;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da encomenda',AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `ingredientePizza`
 --
@@ -399,7 +400,7 @@ ALTER TABLE `itemCarrinho`
 -- AUTO_INCREMENT for table `itemEncomenda`
 --
 ALTER TABLE `itemEncomenda`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID do item da encomenda',AUTO_INCREMENT=10;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID do item da encomenda',AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `molhoPizza`
 --

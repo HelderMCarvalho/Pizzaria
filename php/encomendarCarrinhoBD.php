@@ -2,9 +2,14 @@
     require_once './bd.php';
     session_start();
 
-    if(isset($_SESSION['pessoaLogada'])){
-        $sql = 'INSERT INTO encomenda(pessoaID) VALUES('.$_SESSION['pessoaLogada']['ID'].');';
+    if((isset($_SESSION['pessoaLogada'])) && (($_POST['inputLevantamentoLoja']=='on') || ($_POST['inputEntregaCasa']=='on'))){
+        $sql = 'INSERT INTO encomenda(pessoaID, tipoEntrega) VALUES('.$_SESSION['pessoaLogada']['ID'].', :tipoEntrega);';
         $stmt = $PDO->prepare($sql);
+        if($_POST['inputLevantamentoLoja']=='on'){
+            $stmt->bindParam(':tipoEntrega',$tipoEntrega=0);
+        }elseif($_POST['inputEntregaCasa']=='on'){
+            $stmt->bindParam(':tipoEntrega',$tipoEntrega=1);
+        }
         $result = $stmt->execute();
         $idEncomenda=$PDO->lastInsertId();
 

@@ -53,9 +53,22 @@
         <div class="col-md-12 text-right">
             <h2><b>Total: </b><?=$totalCarrinho?>€</h2>
         </div>
-        <div class="col-md-12 text-right">
-            <a href="../php/encomendarCarrinhoBD.php" class="btn btn-danger">Encomendar</a>
-        </div>
+        <form action="../php/encomendarCarrinhoBD.php" method="post" class="form-inline col-md-12 text-right">
+            <div class="form-group">
+                <label style="vertical-align: text-bottom">Tipo de entraga:</label>
+                <label>
+                    <input type="checkbox" name="inputLevantamentoLoja" id="inputLevantamentoLoja"><span class="label-text">Levantamento em Loja</span>
+                </label>
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" name="inputEntregaCasa" id="inputEntregaCasa"><span class="label-text">Entrega em Casa</span>
+                </label>
+            </div>
+            <div class="col-md-12 text-right paddingLess">
+                <button type="submit" class="btn btn-danger">Encomendar</button>
+            </div>
+        </form>
     </div>
 </div>
 <?php
