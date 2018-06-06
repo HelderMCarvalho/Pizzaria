@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 05-Jun-2018 às 14:53
+-- Generation Time: 06-Jun-2018 às 15:46
 -- Versão do servidor: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -67,7 +67,8 @@ INSERT INTO `crostaPizza` (`ID`, `nome`, `preco`) VALUES
 CREATE TABLE IF NOT EXISTS `encomenda` (
   `ID` int(11) NOT NULL COMMENT 'ID da encomenda',
   `pessoaID` int(11) NOT NULL COMMENT 'ID da pessoa ao qual pertence a encomenda',
-  `tipoEntrega` tinyint(1) NOT NULL COMMENT 'Repredenta o tipo de entrega que a pessoa escolheu (0 - Loja | 1 - Casa)'
+  `tipoEntrega` tinyint(1) NOT NULL COMMENT 'Repredenta o tipo de entrega que a pessoa escolheu (0 - Loja | 1 - Casa)',
+  `entregue` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Representa se a encomenda foi entregue ou não (0 - Não | 1 - Sim)'
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Representa uma encomenda (um carrinho que já foi pago)';
 
 -- --------------------------------------------------------
@@ -156,18 +157,6 @@ CREATE TABLE IF NOT EXISTS `itemCarrinho` (
   `carrinhoID` int(11) NOT NULL COMMENT 'ID do carrinho ao qual esta linha do carrinho pertence'
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='Tabela que guarda as pizzas dos carrinhos';
 
---
--- Extraindo dados da tabela `itemCarrinho`
---
-
-INSERT INTO `itemCarrinho` (`ID`, `pizzaID`, `quantidade`, `tamanhoID`, `crostaID`, `molhoID`, `extraQueijo`, `preco`, `carrinhoID`) VALUES
-(5, 2, 1, 1, 1, 1, 0, 4.9, 1),
-(6, 3, 1, 1, 1, 1, 0, 5.25, 1),
-(7, 1, 2, 3, 2, 1, 0, 6.2, 1),
-(8, 2, 3, 4, 2, 2, 0, 9.9, 1),
-(9, 3, 4, 5, 2, 3, 0, 12.25, 1),
-(10, 13, 5, 5, 2, 3, 1, 20, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -226,14 +215,15 @@ CREATE TABLE IF NOT EXISTS `pessoa` (
   `tipoPessoa` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Tipo de pessoa (0 - Cliente | 1 - Funcionário)',
   `funcaoFuncionario` varchar(20) DEFAULT NULL COMMENT 'Função de funcionário (caso esta pessoa seja)',
   `password` varchar(535) NOT NULL COMMENT 'Password da pessoa'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Pessoa (tem os atributos em comum de Cliente e Funcionário)';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Pessoa (tem os atributos em comum de Cliente e Funcionário)';
 
 --
 -- Extraindo dados da tabela `pessoa`
 --
 
 INSERT INTO `pessoa` (`ID`, `nome`, `apelido`, `email`, `dataNascimento`, `morada`, `codigoPostal`, `freguesia`, `distrito`, `tipoPessoa`, `funcaoFuncionario`, `password`) VALUES
-(1, 'Hélder', 'Carvalho', 'teste@teste.pt', '1999-05-25', 'Rua da Lama, 151', '4755-437', 'Remelhe', 'Braga', 0, NULL, '$2y$10$lOxam2ySywIQAsIo.QO/X.IYLhpQDLjNDrkpUUP.5VPGhhm.wZou6');
+(1, 'Hélder', 'Carvalho', 'teste@teste.pt', '1999-05-25', 'Rua da Lama, 151', '4755-437', 'Remelhe', 'Braga', 0, NULL, '$2y$10$lOxam2ySywIQAsIo.QO/X.IYLhpQDLjNDrkpUUP.5VPGhhm.wZou6'),
+(2, 'Funcionário', 'Um', 'teste1@teste.pt', '1999-05-25', 'Rua dos Testes, 999', '4755-999', 'Barcelos', 'Braga', 1, 'Gerente', '$2y$10$lOxam2ySywIQAsIo.QO/X.IYLhpQDLjNDrkpUUP.5VPGhhm.wZou6');
 
 -- --------------------------------------------------------
 
@@ -410,7 +400,7 @@ ALTER TABLE `molhoPizza`
 -- AUTO_INCREMENT for table `pessoa`
 --
 ALTER TABLE `pessoa`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da pessoa',AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da pessoa',AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `pizza`
 --

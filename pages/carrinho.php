@@ -15,6 +15,7 @@
 <div class="container marTop">
     <div class="col-md-12">
         <h1 class="text-center"><b>O meu carrinho</b></h1>
+        <br>
         <table class="table table-bordered table-hover tabelaMinhasPizzas" style="background-color: white;">
             <thead>
             <tr>
@@ -42,7 +43,7 @@
                         <td><?=$itemCarrinho['preco']?>€</td>
                         <td><?=$itemCarrinho['quantidade']?></td>
                         <td>
-                            <a href="../php/removerItemCarrinho.php?id=<?=$itemCarrinho['ID']?>" class="btn btn-danger">
+                            <a href="../php/removerItemCarrinhoBD.php?id=<?=$itemCarrinho['ID']?>" class="btn btn-danger">
                                 <span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span>
                             </a>
                         </td>

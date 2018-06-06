@@ -3,7 +3,7 @@
     session_start();
 
     if(isset($_SESSION['pessoaLogada'])){
-        $sql='SELECT ID FROM carrinho WHERE pessoaID = '.$_SESSION['pessoaLogada']['ID'].';';
+        $sql='SELECT ID FROM carrinho WHERE pessoaID='.$_SESSION['pessoaLogada']['ID'].';';
         $result = $PDO->query($sql);
         $carrinhoPessoa = $result->fetch();
 

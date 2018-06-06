@@ -23,7 +23,9 @@
                     <li <?php if(($_SERVER['REQUEST_URI']=='/index.php') || ($_SERVER['REQUEST_URI']=='/')){echo 'class="active"';} ?>><a href="/index.php">Home<span class="sr-only">(current)</span></a></li>
                     <li <?php if($_SERVER['REQUEST_URI']=='/pages/menus.php'){echo 'class="active"';} ?>><a href="/pages/menus.php">Menus</a></li>
                     <li <?php if($_SERVER['REQUEST_URI']=='/pages/criarPizza.php'){echo 'class="active"';} ?>><a href="/pages/criarPizza.php">Criar pizza</a></li>
-                    <li <?php if($_SERVER['REQUEST_URI']=='/pages/minhasPizzas.php'){echo 'class="active"';} ?>><a href="/pages/minhasPizzas.php">Minhas pizza's</a></li>
+                    <?php if(isset($_SESSION['pessoaLogada'])){ ?>
+                        <li <?php if($_SERVER['REQUEST_URI']=='/pages/minhasPizzas.php'){echo 'class="active"';} ?>><a href="/pages/minhasPizzas.php">Minhas pizza's</a></li>
+                    <?php } ?>
                     <li <?php if($_SERVER['REQUEST_URI']=='/pages/sobre.php'){echo 'class="active"';} ?>><a href="/pages/sobre.php">Sobre</a></li>
                     <?php if(!isset($_SESSION['pessoaLogada'])){ ?>
                         <li <?php if($_SERVER['REQUEST_URI']=='/pages/login.php'){echo 'class="active"';} ?>><a href="/pages/login.php">Login</a></li>
@@ -38,6 +40,11 @@
                                 <li><a href="#">Bem-vindo <?=$_SESSION['pessoaLogada']['nome'].' '.$_SESSION['pessoaLogada']['apelido']?></a></li>
                                 <li <?php if($_SERVER['REQUEST_URI']=='/pages/perfil.php'){echo 'class="active"';} ?>><a href="/pages/perfil.php">Perfil</a></li>
                                 <li><a href="/php/logout.php">Logout</a></li>
+
+                                <?php if($_SESSION['pessoaLogada']['tipoPessoa']==1){ ?>
+                                    <li class="divider"></li>
+                                    <li <?php if($_SERVER['REQUEST_URI']=='/pages/listaEncomendas.php'){echo 'class="active"';} ?>><a href="/pages/listaEncomendas.php">Lista de Encomendas</a></li>
+                                <?php } ?>
                             </ul>
                         </li>
                     <?php }?>
@@ -79,7 +86,7 @@
                                             </span>
                                         </span>
                                         <span class="item-right">
-                                            <a href="/php/removerItemCarrinho.php?id=<?=$itemCarrinho['ID']?>">
+                                            <a href="/php/removerItemCarrinhoBD.php?id=<?=$itemCarrinho['ID']?>">
                                                 <button class="btn btn-xs btn-danger pull-right"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                                             </a>
                                         </span>
@@ -88,7 +95,7 @@
                             <?php
                                 }
                             }
-                            if(isset($_SESSION['pessoaLogada'])){?>
+                            if(!empty($itemsCarrinho) && isset($_SESSION['pessoaLogada'])){?>
                             <li>
                                 <span class="item">
                                     <span class="item-left">

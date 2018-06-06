@@ -3,7 +3,7 @@
     session_start();
 
     if(isset($_SESSION['pessoaLogada'])){
-        $sql='SELECT ID FROM carrinho WHERE pessoaID = '.$_SESSION['pessoaLogada']['ID'].';';
+        $sql='SELECT ID FROM carrinho WHERE pessoaID='.$_SESSION['pessoaLogada']['ID'].';';
         $result = $PDO->query($sql);
         $carrinhoPessoa = $result->fetch();
 
@@ -19,7 +19,7 @@
         $result = $PDO->query($sql);
         $precoMolho = $result->fetch();
 
-        $sql='SELECT ingredientePizza.preco, ingredientePizzaPorPizza.quantidade, ROUND(ingredientePizza.preco*ingredientePizzaPorPizza.quantidade, 2) TotalPorIngrediente FROM ingredientePizza INNER JOIN ingredientePizzaPorPizza ON ingredientePizza.ID = ingredientePizzaPorPizza.ingredientePizzaID WHERE ingredientePizzaPorPizza.pizzaID = '.$_POST['inputID'].';';
+        $sql='SELECT ingredientePizza.preco, ingredientePizzaPorPizza.quantidade, ROUND(ingredientePizza.preco*ingredientePizzaPorPizza.quantidade, 2) TotalPorIngrediente FROM ingredientePizza INNER JOIN ingredientePizzaPorPizza ON ingredientePizza.ID=ingredientePizzaPorPizza.ingredientePizzaID WHERE ingredientePizzaPorPizza.pizzaID='.$_POST['inputID'].';';
         $result = $PDO->query($sql);
         $precoIngredientes = $result->fetchAll();
 

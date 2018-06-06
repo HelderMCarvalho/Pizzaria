@@ -1,7 +1,7 @@
 <?php
     require_once('../php/bd.php');
     require_once './partials/header1.html';
-    $sql='SELECT ID, nome, imagem FROM pizza WHERE ID = '.$_REQUEST['id'].';';
+    $sql='SELECT ID, nome, imagem FROM pizza WHERE ID='.$_REQUEST['id'].';';
     $result = $PDO->query($sql);
     $pizza = $result->fetch();
 ?>
@@ -75,7 +75,7 @@
                 <button type="submit" class="btn btn-danger">Encomendar</button>
             </form>
             <?php
-                $sql='SELECT ingredientePizza.nome, ingredientePizza.imagem, ingredientePizza.preco, ingredientePizzaPorPizza.quantidade, ROUND(ingredientePizza.preco*ingredientePizzaPorPizza.quantidade, 2) TotalPorIngrediente FROM ingredientePizza INNER JOIN ingredientePizzaPorPizza ON ingredientePizza.ID = ingredientePizzaPorPizza.ingredientePizzaID WHERE ingredientePizzaPorPizza.pizzaID = '.$_REQUEST['id'].';';
+                $sql='SELECT ingredientePizza.nome, ingredientePizza.imagem, ingredientePizza.preco, ingredientePizzaPorPizza.quantidade, ROUND(ingredientePizza.preco*ingredientePizzaPorPizza.quantidade, 2) TotalPorIngrediente FROM ingredientePizza INNER JOIN ingredientePizzaPorPizza ON ingredientePizza.ID=ingredientePizzaPorPizza.ingredientePizzaID WHERE ingredientePizzaPorPizza.pizzaID='.$_REQUEST['id'].';';
                 $result = $PDO->query($sql);
                 $ingredientesPizza = $result->fetchAll();
                 $precoBase=(reset($tamanhosPizza)['preco'])+(reset($crostasPizza)['preco'])+(reset($molhosPizza)['preco']);
