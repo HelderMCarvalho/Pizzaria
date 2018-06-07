@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 07-Jun-2018 às 11:51
+-- Generation Time: 07-Jun-2018 às 16:13
 -- Versão do servidor: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `crostaPizza` (
   `ID` int(11) NOT NULL COMMENT 'ID da crosta da pizza',
   `nome` varchar(50) NOT NULL COMMENT 'Nome da crosta da pizza',
   `preco` float NOT NULL COMMENT 'Preço da crosta da pizza'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Crostas da pizza';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='Crostas da pizza';
 
 --
 -- Extraindo dados da tabela `crostaPizza`
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `encomenda` (
   `pessoaID` int(11) NOT NULL COMMENT 'ID da pessoa ao qual pertence a encomenda',
   `tipoEntrega` tinyint(1) NOT NULL COMMENT 'Repredenta o tipo de entrega que a pessoa escolheu (0 - Loja | 1 - Casa)',
   `entregue` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Representa se a encomenda foi entregue ou não (0 - Não | 1 - Sim)'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Representa uma encomenda (um carrinho que já foi pago)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Representa uma encomenda (um carrinho que já foi pago)';
 
 -- --------------------------------------------------------
 
@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `itemCarrinho` (
   `extraQueijo` tinyint(1) NOT NULL COMMENT 'Significa se a pizza tem extra queijo ou não (0 - Não | 1 - Sim)',
   `preco` float NOT NULL COMMENT 'Preço da pizza',
   `carrinhoID` int(11) NOT NULL COMMENT 'ID do carrinho ao qual esta linha do carrinho pertence'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Tabela que guarda as pizzas dos carrinhos';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Tabela que guarda as pizzas dos carrinhos';
 
 -- --------------------------------------------------------
 
@@ -173,7 +173,7 @@ CREATE TABLE IF NOT EXISTS `itemEncomenda` (
   `extraQueijo` tinyint(1) NOT NULL COMMENT 'Significa se a pizza tem extra queijo ou não (0 - Não | 1 - Sim)',
   `preco` float NOT NULL COMMENT 'Preço da pizza',
   `encomendaID` int(11) NOT NULL COMMENT 'ID da encomenda à qual esta linha pertence'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Tabela que guarda as pizzas das encomendas';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Tabela que guarda as pizzas das encomendas';
 
 -- --------------------------------------------------------
 
@@ -185,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `molhoPizza` (
   `ID` int(11) NOT NULL COMMENT 'ID do molho da pizza',
   `nome` varchar(50) NOT NULL COMMENT 'Nome do molho da pizza',
   `preco` float NOT NULL COMMENT 'Preço do molho da pizza'
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='Molhos da pizza';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='Molhos da pizza';
 
 --
 -- Extraindo dados da tabela `molhoPizza`
@@ -260,7 +260,7 @@ CREATE TABLE IF NOT EXISTS `tamanhoPizza` (
   `ID` int(11) NOT NULL COMMENT 'ID do tamanho da pizza',
   `nome` varchar(50) NOT NULL COMMENT 'Nome do tamanho da pizza',
   `preco` float NOT NULL COMMENT 'Preço do tamanho da pizza'
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='Tamanhos da pizza';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='Tamanhos da pizza';
 
 --
 -- Extraindo dados da tabela `tamanhoPizza`
@@ -370,12 +370,12 @@ ALTER TABLE `carrinho`
 -- AUTO_INCREMENT for table `crostaPizza`
 --
 ALTER TABLE `crostaPizza`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da crosta da pizza',AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da crosta da pizza',AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `encomenda`
 --
 ALTER TABLE `encomenda`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da encomenda',AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da encomenda';
 --
 -- AUTO_INCREMENT for table `ingredientePizza`
 --
@@ -385,17 +385,17 @@ ALTER TABLE `ingredientePizza`
 -- AUTO_INCREMENT for table `itemCarrinho`
 --
 ALTER TABLE `itemCarrinho`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID';
 --
 -- AUTO_INCREMENT for table `itemEncomenda`
 --
 ALTER TABLE `itemEncomenda`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID do item da encomenda',AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID do item da encomenda';
 --
 -- AUTO_INCREMENT for table `molhoPizza`
 --
 ALTER TABLE `molhoPizza`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID do molho da pizza',AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID do molho da pizza',AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `pessoa`
 --
@@ -410,7 +410,7 @@ ALTER TABLE `pizza`
 -- AUTO_INCREMENT for table `tamanhoPizza`
 --
 ALTER TABLE `tamanhoPizza`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID do tamanho da pizza',AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID do tamanho da pizza',AUTO_INCREMENT=9;
 --
 -- Constraints for dumped tables
 --

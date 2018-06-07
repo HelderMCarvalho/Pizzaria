@@ -42,6 +42,8 @@
                                     <li class="divider"></li>
                                     <li <?php if($_SERVER['REQUEST_URI']=='/pages/listaEncomendas.php'){echo 'class="active"';} ?>><a href="/pages/listaEncomendas.php">Lista de Encomendas</a></li>
                                     <li <?php if($_SERVER['REQUEST_URI']=='/pages/listaTamanhos.php'){echo 'class="active"';} ?>><a href="/pages/listaTamanhos.php">Lista de Tamanhos</a></li>
+                                    <li <?php if($_SERVER['REQUEST_URI']=='/pages/listaCrostas.php'){echo 'class="active"';} ?>><a href="/pages/listaCrostas.php">Lista de Crostas</a></li>
+                                    <li <?php if($_SERVER['REQUEST_URI']=='/pages/listaMolhos.php'){echo 'class="active"';} ?>><a href="/pages/listaMolhos.php">Lista de Molhos</a></li>
                                 <?php } ?>
                             </ul>
                         </li>

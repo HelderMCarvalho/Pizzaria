@@ -8,12 +8,12 @@
         return $dados;
     }
 
-    $sql='UPDATE tamanhoPizza SET nome=:nome, preco=:preco WHERE ID=:ID;';
+    $sql='UPDATE crostaPizza SET nome=:nome, preco=:preco WHERE ID=:ID;';
     $stmt = $PDO->prepare($sql);
     $stmt->bindParam(':nome', testarInput($_POST['inputNome']));
     $stmt->bindParam(':preco', testarInput($_POST['inputPreco']));
     $stmt->bindParam(':ID',$_POST['inputID']);
     $result = $stmt->execute();
 
-    header("Location: ../pages/listaTamanhos.php");
+    header("Location: ../pages/listaCrostas.php");
     exit();
