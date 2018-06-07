@@ -18,7 +18,7 @@
     $stmt->bindParam(':codigoPostal', testarInput($_POST['inputCodigoPostal']));
     $stmt->bindParam(':freguesia', testarInput($_POST['inputFreguesia']));
     $stmt->bindParam(':distrito', testarInput($_POST['inputDistrito']));
-    $stmt->bindParam(':password', password_hash(testarInput($_POST['inputPassword']), PASSWORD_DEFAULT));
+    $stmt->bindParam(':password', password_hash($_POST['inputPassword'], PASSWORD_DEFAULT));
     $result = $stmt->execute();
 
     $sql = 'INSERT INTO carrinho(pessoaID) VALUES('.$PDO->lastInsertId().');';

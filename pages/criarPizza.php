@@ -21,9 +21,8 @@
                     ?>
                     <label for="inputSize">Tamanho:</label>
                     <select class="form-control" name="inputTamanho" title="Tamanho" id="inputTamanho">
-                        <?php
-                            foreach($tamanhosPizza as $tamanhoPizza){ ?>
-                                <option value="<?=$tamanhoPizza['ID']?>" preco="<?=$tamanhoPizza['preco']?>"><?=$tamanhoPizza['nome']?></option>
+                        <?php foreach($tamanhosPizza as $tamanhoPizza){ ?>
+                            <option value="<?=$tamanhoPizza['ID']?>" preco="<?=$tamanhoPizza['preco']?>"><?=$tamanhoPizza['nome']?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -35,9 +34,8 @@
                         $crostasPizza = $result->fetchAll();
                     ?>
                     <select class="form-control" name="inputCrosta" title="Crosta" id="inputCrosta">
-                        <?php
-                            foreach($crostasPizza as $crostaPizza){ ?>
-                                <option value="<?=$crostaPizza['ID']?>" preco="<?=$crostaPizza['preco']?>"><?=$crostaPizza['nome']?></option>
+                        <?php foreach($crostasPizza as $crostaPizza){ ?>
+                            <option value="<?=$crostaPizza['ID']?>" preco="<?=$crostaPizza['preco']?>"><?=$crostaPizza['nome']?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -51,9 +49,8 @@
                         $molhosPizza = $result->fetchAll();
                     ?>
                     <select class="form-control" name="inputMolho" title="Molho" id="inputMolho">
-                        <?php
-                            foreach($molhosPizza as $molhoPizza){ ?>
-                                <option value="<?=$molhoPizza['ID']?>" preco="<?=$molhoPizza['preco']?>"><?=$molhoPizza['nome']?></option>
+                        <?php foreach($molhosPizza as $molhoPizza){ ?>
+                            <option value="<?=$molhoPizza['ID']?>" preco="<?=$molhoPizza['preco']?>"><?=$molhoPizza['nome']?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -71,8 +68,7 @@
                 $ingredientesPizza = $result->fetchAll();
             ?>
             <div class="col-md-12 ingredientPicker">
-                <?php
-                foreach($ingredientesPizza as $ingredientePizza){ ?>
+                <?php foreach($ingredientesPizza as $ingredientePizza){ ?>
                     <div class="col-md-6 form-inline">
                         <div class="form-group">
                             <img src="<?=$ingredientePizza['imagem']?>" alt="<?=$ingredientePizza['nome']?>">

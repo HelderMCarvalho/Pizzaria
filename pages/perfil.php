@@ -6,7 +6,6 @@
 <?php
     require_once './partials/header2.php';
 ?>
-
 <div class="container paddingLess marTop">
     <div class="col-md-12 text-center">
         <h1><b>Perfil</b></h1>
@@ -15,7 +14,7 @@
         <div class="col-md-12">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="inputNome">Name:</label>
+                    <label for="inputNome">Nome:</label>
                     <input type="text" class="form-control" id="inputNome" name="inputNome" value="<?=$_SESSION['pessoaLogada']['nome']?>" required>
                 </div>
             </div>
@@ -81,7 +80,6 @@
     </div>
     </form>
 </div>
-
 <?php
     require_once './partials/footer.html';
 ?>

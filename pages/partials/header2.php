@@ -3,9 +3,7 @@
     <link rel="stylesheet" href="/css/fontAwesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<?php
-    session_start();
-?>
+<?php session_start(); ?>
 <body class="woodBackground">
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
@@ -40,10 +38,10 @@
                                 <li><a href="#">Bem-vindo <?=$_SESSION['pessoaLogada']['nome'].' '.$_SESSION['pessoaLogada']['apelido']?></a></li>
                                 <li <?php if($_SERVER['REQUEST_URI']=='/pages/perfil.php'){echo 'class="active"';} ?>><a href="/pages/perfil.php">Perfil</a></li>
                                 <li><a href="/php/logout.php">Logout</a></li>
-
                                 <?php if($_SESSION['pessoaLogada']['tipoPessoa']==1){ ?>
                                     <li class="divider"></li>
                                     <li <?php if($_SERVER['REQUEST_URI']=='/pages/listaEncomendas.php'){echo 'class="active"';} ?>><a href="/pages/listaEncomendas.php">Lista de Encomendas</a></li>
+                                    <li <?php if($_SERVER['REQUEST_URI']=='/pages/listaTamanhos.php'){echo 'class="active"';} ?>><a href="/pages/listaTamanhos.php">Lista de Tamanhos</a></li>
                                 <?php } ?>
                             </ul>
                         </li>
@@ -61,6 +59,7 @@
                                 $sql = 'SELECT ID FROM carrinho WHERE pessoaID="'.$_SESSION['pessoaLogada']['ID'].'";';
                                 $result = $PDO->query($sql);
                                 $carrinho = $result->fetch();
+
                                 $sql = 'SELECT itemCarrinho.ID, pizza.nome, pizza.imagem, itemCarrinho.quantidade, itemCarrinho.preco, ROUND(itemCarrinho.quantidade*itemCarrinho.preco, 2) TotalPorPizza FROM itemCarrinho INNER JOIN pizza ON pizza.ID=itemCarrinho.pizzaID WHERE itemCarrinho.carrinhoID="'.$carrinho['ID'].'";';
                                 $result = $PDO->query($sql);
                                 $itemsCarrinho = $result->fetchAll();
@@ -96,17 +95,17 @@
                                 }
                             }
                             if(!empty($itemsCarrinho) && isset($_SESSION['pessoaLogada'])){?>
-                            <li>
-                                <span class="item">
-                                    <span class="item-left">
-                                        <span class="item-info">
-                                            <span><b>Total: <?=$totalCarrinho?>€</b></span>
+                                <li>
+                                    <span class="item">
+                                        <span class="item-left">
+                                            <span class="item-info">
+                                                <span><b>Total: <?=$totalCarrinho?>€</b></span>
+                                            </span>
                                         </span>
                                     </span>
-                                </span>
-                            </li>
-                            <li class="divider"></li>
-                            <li><a class="text-center" href="/pages/carrinho.php">Ver carrinho</a></li>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a class="text-center" href="/pages/carrinho.php">Ver carrinho</a></li>
                             <?php } ?>
                         </ul>
                     </li>

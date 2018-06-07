@@ -27,18 +27,18 @@
                 <tbody>
                     <?php
                         foreach($listaEncomendas as $encomenda){ ?>
-                    <tr>
-                        <td><?=$encomenda['ID']?></td>
-                        <td><?=$encomenda['nomeCompletoCliente']?></td>
-                        <td><?php if($encomenda['tipoEntrega']==0){
-                                echo 'Levantamento em Loja';
-                            }else{
-                                echo 'Entrega em Casa';
-                            } ?>
-                        </td>
-                        <td><a href="./encomenda.php?id=<?=$encomenda['ID']?>" class="btn btn-danger">+ Info</a></td>
-                    </tr>
-                <?php } ?>
+                            <tr>
+                                <td><?=$encomenda['ID']?></td>
+                                <td><?=$encomenda['nomeCompletoCliente']?></td>
+                                <td><?php if($encomenda['tipoEntrega']==0){
+                                        echo 'Levantamento em Loja';
+                                    }else{
+                                        echo 'Entrega em Casa';
+                                    } ?>
+                                </td>
+                                <td><a href="./encomenda.php?id=<?=$encomenda['ID']?>" class="btn btn-danger">+ Info</a></td>
+                            </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         <?php } ?>

@@ -29,28 +29,28 @@
                 </tr>
             </thead>
             <tbody>
-            <?php
-                $totalCarrinho=0;
-                foreach($itemsEncomenda as $itemEncomenda){
-                    $sql='SELECT ingredientePizza.nome, ingredientePizza.imagem, ingredientePizzaPorPizza.quantidade FROM ingredientePizza INNER JOIN ingredientePizzaPorPizza ON ingredientePizza.ID=ingredientePizzaPorPizza.ingredientePizzaID WHERE ingredientePizzaPorPizza.pizzaID='.$itemEncomenda['pizzaID'].';';
-                    $result = $PDO->query($sql);
-                    $ingredientesItem = $result->fetchAll();
-                    $totalCarrinho+=$itemEncomenda['TotalPorPizza'];
-            ?>
-                    <tr>
-                        <td><?=$itemEncomenda['nome']?></td>
-                        <td><?=$itemEncomenda['quantidade']?></td>
-                        <td><?=$itemEncomenda['tamanho']?></td>
-                        <td><?=$itemEncomenda['crosta']?></td>
-                        <td><?=$itemEncomenda['molho']?></td>
-                        <td><?php if($itemEncomenda['extraQueijo']==0){echo 'Não';}else{echo 'Sim';} ?></td>
-                        <td>
-                            <?php
-                                foreach($ingredientesItem as $ingredienteItem){ ?>
-                                    <img src="<?=$ingredienteItem['imagem']?>" alt="<?=$ingredienteItem['nome']?>"><b>x<?=$ingredienteItem['quantidade']?></b>
-                            <?php } ?>
-                        </td>
-                    </tr>
+                <?php
+                    $totalCarrinho=0;
+                    foreach($itemsEncomenda as $itemEncomenda){
+                        $sql='SELECT ingredientePizza.nome, ingredientePizza.imagem, ingredientePizzaPorPizza.quantidade FROM ingredientePizza INNER JOIN ingredientePizzaPorPizza ON ingredientePizza.ID=ingredientePizzaPorPizza.ingredientePizzaID WHERE ingredientePizzaPorPizza.pizzaID='.$itemEncomenda['pizzaID'].';';
+                        $result = $PDO->query($sql);
+                        $ingredientesItem = $result->fetchAll();
+                        $totalCarrinho+=$itemEncomenda['TotalPorPizza'];
+                ?>
+                <tr>
+                    <td><?=$itemEncomenda['nome']?></td>
+                    <td><?=$itemEncomenda['quantidade']?></td>
+                    <td><?=$itemEncomenda['tamanho']?></td>
+                    <td><?=$itemEncomenda['crosta']?></td>
+                    <td><?=$itemEncomenda['molho']?></td>
+                    <td><?php if($itemEncomenda['extraQueijo']==0){echo 'Não';}else{echo 'Sim';} ?></td>
+                    <td>
+                        <?php
+                            foreach($ingredientesItem as $ingredienteItem){ ?>
+                                <img src="<?=$ingredienteItem['imagem']?>" alt="<?=$ingredienteItem['nome']?>"><b>x<?=$ingredienteItem['quantidade']?></b>
+                        <?php } ?>
+                    </td>
+                </tr>
                 <?php } ?>
             </tbody>
         </table>
