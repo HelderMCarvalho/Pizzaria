@@ -2,7 +2,7 @@
     require_once('../php/bd.php');
     require_once './partials/header1.html';
 ?>
-    <title>Criar pizza | Pizza's</title>
+    <title>Criar Pizza | Pizza's</title>
 <?php
     require_once './partials/header2.php';
 ?>
@@ -11,7 +11,7 @@
         <h1><b>Cria a tua própria Pizza</b></h1>
     </div>
     <div class="col-md-12 text-left">
-        <form action="../php/criarAdicionarCarrinhoPizzaPersonalizada.php" method="post">
+        <form action="../php/criarAdicionarCarrinhoPizzaPersonalizadaBD.php" method="post">
             <div class="col-md-12">
                 <div class="form-group col-md-6">
                     <?php
@@ -19,7 +19,7 @@
                         $result = $PDO->query($sql);
                         $tamanhosPizza = $result->fetchAll();
                     ?>
-                    <label for="inputSize">Tamanho:</label>
+                    <label for="inputTamanho">Tamanho:</label>
                     <select class="form-control" name="inputTamanho" title="Tamanho" id="inputTamanho">
                         <?php foreach($tamanhosPizza as $tamanhoPizza){ ?>
                             <option value="<?=$tamanhoPizza['ID']?>" preco="<?=$tamanhoPizza['preco']?>"><?=$tamanhoPizza['nome']?></option>

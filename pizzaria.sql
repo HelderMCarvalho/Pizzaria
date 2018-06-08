@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 08-Jun-2018 às 12:06
+-- Generation Time: 08-Jun-2018 às 15:54
 -- Versão do servidor: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `ingredientePizza` (
   `nome` varchar(50) NOT NULL COMMENT 'Nome do ingrediente da pizza',
   `imagem` varchar(535) NOT NULL COMMENT 'Caminho da imagem do ingrediente da pizza',
   `preco` float NOT NULL COMMENT 'Preço do ingrediente da pizza'
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='Ingredientes da pizza';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='Ingredientes da pizza';
 
 --
 -- Extraindo dados da tabela `ingredientePizza`
@@ -238,7 +238,7 @@ CREATE TABLE IF NOT EXISTS `pizza` (
   `pizzaPredefinida` tinyint(1) NOT NULL COMMENT 'Significa se a pizza é predefinida (criada por funcionário) (0 - Não | 1 - Sim)',
   `pizzaPersonalizada` tinyint(1) NOT NULL COMMENT 'Significa se a pizza é personalizada (criada por um cliente) (0 - Não | 1 - Sim)',
   `pessoaID` int(11) DEFAULT NULL COMMENT 'ID da pessoa que criou a pizza personalizada (NULL se a pizza é predefinida criada por um funcionário)'
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='Pizzas do sistema';
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='Pizzas do sistema';
 
 --
 -- Extraindo dados da tabela `pizza`
@@ -380,7 +380,7 @@ ALTER TABLE `encomenda`
 -- AUTO_INCREMENT for table `ingredientePizza`
 --
 ALTER TABLE `ingredientePizza`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID do ingrediente da pizza',AUTO_INCREMENT=12;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID do ingrediente da pizza',AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `itemCarrinho`
 --
@@ -405,7 +405,7 @@ ALTER TABLE `pessoa`
 -- AUTO_INCREMENT for table `pizza`
 --
 ALTER TABLE `pizza`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da pizza',AUTO_INCREMENT=14;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID da pizza',AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `tamanhoPizza`
 --

@@ -12,16 +12,16 @@
             <div class="active item">
                 <div class="fill" style="background-image:url('./img/pizza1.jpg');">
                     <div class="carousel-caption">
-                        <p>Pizza 1</p>
-                        <a href="#" class="btn btn-success">Adicionar ao carrinho</a>
+                        <!--<p>Pizza 1</p>
+                        <a href="#" class="btn btn-success">Adicionar ao carrinho</a>-->
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="fill" style="background-image:url('./img/pizza2.jpg');">
                     <div class="carousel-caption">
-                        <p>Pizza 2</p>
-                        <a href="#" class="btn btn-success">Adicionar ao carrinho</a>
+                        <!--<p>Pizza 2</p>
+                        <a href="#" class="btn btn-success">Adicionar ao carrinho</a>-->
                     </div>
                 </div>
             </div>
@@ -29,11 +29,9 @@
         <div class="pull-center">
             <a class="left carousel-control" href="#homeCarousel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
             </a>
             <a class="right carousel-control" href="#homeCarousel" role="button" data-slide="next">
                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
             </a>
         </div>
     </div>
