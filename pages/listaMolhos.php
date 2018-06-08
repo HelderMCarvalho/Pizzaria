@@ -37,8 +37,8 @@
                     <form action="../php/criarMolhoBD.php" method="post">
                         <tr>
                             <td>ID</td>
-                            <td><input type="text" class="form-control" id="inputNome" name="inputNome"></td>
-                            <td><input type="number" class="form-control" id="inputPreco" name="inputPreco" step="0.01"></td>
+                            <td><input type="text" class="form-control" id="inputNome" name="inputNome" required></td>
+                            <td><input type="number" class="form-control" id="inputPreco" name="inputPreco" step="0.01" required></td>
                             <td><button type="submit" class="btn btn-success">Criar</button></td>
                         </tr>
                     </form>

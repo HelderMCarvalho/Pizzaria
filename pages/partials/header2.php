@@ -44,6 +44,7 @@
                                     <li <?php if($_SERVER['REQUEST_URI']=='/pages/listaTamanhos.php'){echo 'class="active"';} ?>><a href="/pages/listaTamanhos.php">Lista de Tamanhos</a></li>
                                     <li <?php if($_SERVER['REQUEST_URI']=='/pages/listaCrostas.php'){echo 'class="active"';} ?>><a href="/pages/listaCrostas.php">Lista de Crostas</a></li>
                                     <li <?php if($_SERVER['REQUEST_URI']=='/pages/listaMolhos.php'){echo 'class="active"';} ?>><a href="/pages/listaMolhos.php">Lista de Molhos</a></li>
+                                    <li <?php if($_SERVER['REQUEST_URI']=='/pages/listaIngredientes.php'){echo 'class="active"';} ?>><a href="/pages/listaIngredientes.php">Lista de Ingredientes</a></li>
                                 <?php } ?>
                             </ul>
                         </li>
