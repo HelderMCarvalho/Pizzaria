@@ -67,35 +67,35 @@
                                 $sql = 'SELECT itemCarrinho.ID, pizza.nome, pizza.imagem, itemCarrinho.quantidade, itemCarrinho.preco, ROUND(itemCarrinho.quantidade*itemCarrinho.preco, 2) TotalPorPizza FROM itemCarrinho INNER JOIN pizza ON pizza.ID=itemCarrinho.pizzaID WHERE itemCarrinho.carrinhoID="'.$carrinho['ID'].'";';
                                 $result = $PDO->query($sql);
                                 $itemsCarrinho = $result->fetchAll();
-                            }
-                            if(empty($itemsCarrinho) && isset($_SESSION['pessoaLogada'])){ ?>
-                                <li>
-                                    <span class="item">
-                                       Carrinho vazio!
-                                    </span>
-                                </li>
-                            <?php }else{
-                                $totalCarrinho=0;
-                                foreach ($itemsCarrinho as $itemCarrinho){
-                                    $totalCarrinho+=$itemCarrinho['TotalPorPizza'];
-                            ?>
-                                <li>
-                                    <span class="item">
-                                        <span class="item-left">
-                                            <img src="<?=$itemCarrinho['imagem']?>" width="84" height="auto" alt="<?=$itemCarrinho['nome']?>"/>
-                                            <span class="item-info">
-                                                <span><?=$itemCarrinho['nome']?></span>
-                                                <span><?=sprintf('%0.2f', $itemCarrinho['preco'])?>€<b> x <?=$itemCarrinho['quantidade']?></b></span>
+                                if(empty($itemsCarrinho) && isset($_SESSION['pessoaLogada'])){ ?>
+                                    <li>
+                                        <span class="item">
+                                           Carrinho vazio!
+                                        </span>
+                                    </li>
+                                <?php }else{
+                                    $totalCarrinho=0;
+                                    foreach ($itemsCarrinho as $itemCarrinho){
+                                        $totalCarrinho+=$itemCarrinho['TotalPorPizza'];
+                                ?>
+                                    <li>
+                                        <span class="item">
+                                            <span class="item-left">
+                                                <img src="<?=$itemCarrinho['imagem']?>" width="84" height="auto" alt="<?=$itemCarrinho['nome']?>"/>
+                                                <span class="item-info">
+                                                    <span><?=$itemCarrinho['nome']?></span>
+                                                    <span><?=sprintf('%0.2f', $itemCarrinho['preco'])?>€<b> x <?=$itemCarrinho['quantidade']?></b></span>
+                                                </span>
+                                            </span>
+                                            <span class="item-right">
+                                                <a href="/php/removerItemCarrinhoBD.php?id=<?=$itemCarrinho['ID']?>">
+                                                    <button class="btn btn-xs btn-danger pull-right"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                                </a>
                                             </span>
                                         </span>
-                                        <span class="item-right">
-                                            <a href="/php/removerItemCarrinhoBD.php?id=<?=$itemCarrinho['ID']?>">
-                                                <button class="btn btn-xs btn-danger pull-right"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                                            </a>
-                                        </span>
-                                    </span>
-                                </li>
+                                    </li>
                             <?php
+                                    }
                                 }
                             }
                             if(!empty($itemsCarrinho) && isset($_SESSION['pessoaLogada'])){?>
